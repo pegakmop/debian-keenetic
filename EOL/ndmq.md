@@ -1,4 +1,4 @@
-установка ndmq на debian
+установка ndmq на debian aarch64
 
 ``` 
 cd /root
