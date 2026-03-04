@@ -1,4 +1,8 @@
 #!/bin/sh
+
+# /usr/local/bin/ndmc
+# chmod +x /usr/local/bin/ndmc
+
 if [ "$1" = "-c" ]; then
     shift
     ndmq -p "$*" -x | sed \
