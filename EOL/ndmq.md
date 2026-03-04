@@ -1,6 +1,7 @@
 установка ndmq на debian aarch64
 
 ``` 
+apt install wget -y
 cd /root
 wget https://raw.githubusercontent.com/The-BB/debian-keenetic/refs/heads/master/EOL/ndmq-aarch64_bullseye.tgz
 tar -xzf ndmq-aarch64_bullseye.tgz -C /
