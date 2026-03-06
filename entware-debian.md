@@ -109,7 +109,8 @@ chmod +x /opt/etc/init.d/S99debian
 /opt/etc/init.d/S99debian start
 # скачиваем, устанавливаем и настраиваем ndmq подмену ndmq как ndmc
 debian
-apt install wget -y
+apt update
+apt install -y wget
 cd /root
 wget https://raw.githubusercontent.com/The-BB/debian-keenetic/refs/heads/master/EOL/ndmq-aarch64_bullseye.tgz
 tar -xzf ndmq-aarch64_bullseye.tgz -C /
