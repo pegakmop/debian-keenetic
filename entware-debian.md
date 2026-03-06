@@ -2,6 +2,8 @@
 ```
 opkg update && opkg install ca-certificates wget-ssl curl
 ```
+ну и приступим к самой установке
+``` 
 # Скачиваем архив Debian
 cd /opt/root
 wget http://ndm.zyxmon.org/binaries/debian/debian-trixie-13.3-aarch64.tar.gz
