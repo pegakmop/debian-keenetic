@@ -11,4 +11,21 @@ ldconfig
 ldd /usr/local/bin/ndmq
 ndmq -v
 ndmq -help
+cat > /usr/local/bin/ndmc << 'EOF'
+#!/bin/sh
+
+# /usr/local/bin/ndmc
+# chmod +x /usr/local/bin/ndmc
+
+if [ "$1" = "-c" ]; then
+    shift
+    ndmq -p "$*" -x | sed \
+        -e 's/<response>//' \
+        -e 's#</response>##' \
+        -e 's#<prompt>.*</prompt>##'
+else
+    ndmq -x
+fi
+EOF
+chmod +x /usr/local/bin/ndmc
 ``` 
