@@ -111,6 +111,9 @@ chmod +x /opt/etc/init.d/S99debian
 debian
 apt update
 apt install -y wget
+```
+ставим по желанию ndmq и подмену на привычный ndmc
+``` 
 cd /root
 wget https://raw.githubusercontent.com/The-BB/debian-keenetic/refs/heads/master/EOL/ndmq-aarch64_bullseye.tgz
 tar -xzf ndmq-aarch64_bullseye.tgz -C /
