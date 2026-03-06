@@ -1,8 +1,11 @@
 для запуска и работы дебиана внутри ентвара
 ```
+# Скачиваем архив Debian
+cd /opt/root
+wget http://ndm.zyxmon.org/binaries/debian/debian-trixie-13.3-aarch64.tar.gz
 # Создаем директорию и распаковываем Debian
 mkdir -p /opt/debian
-tar -xzf ~/debian-trixie-13.0-aarch64.tar.gz -C /opt/debian
+tar -xzf /opt/root/debian-trixie-13.0-aarch64.tar.gz -C /opt/debian
 
 # Создаем скрипт для входа в chroot
 cat > /opt/bin/debian << 'EOF'
@@ -104,7 +107,8 @@ EOF
 
 chmod +x /opt/etc/init.d/S99debian
 /opt/etc/init.d/S99debian start
-# настраиваем ndmq подмену ndmq как ndmc
+# скачиваем, устанавливаем и настраиваем ndmq подмену ndmq как ndmc
+debian
 apt install wget -y
 cd /root
 wget https://raw.githubusercontent.com/The-BB/debian-keenetic/refs/heads/master/EOL/ndmq-aarch64_bullseye.tgz
@@ -135,22 +139,22 @@ chmod +x /usr/local/bin/ndmc
 
 
 # Создаем файл со списком сервисов (пример)
-cat > /opt/debian/debian/chroot-services.list << 'EOF'
+# cat > /opt/debian/debian/chroot-services.list << 'EOF'
 # Примеры сервисов (раскомментируйте нужные)
 # ssh
 # cron
 # nginx
-EOF
+# EOF
 
 echo "Установка завершена!"
 echo "Для входа в Debian используйте: debian"
-echo "Для управления сервисами: /opt/etc/init.d/S99debian {start|stop|restart|status}"
+echo "Для управления сервисом Debian: /opt/etc/init.d/S99debian {start|stop|restart|status}"
 ```
-запускаем дебиан и входим
+запускаем дебиан и входим такой командой
 ```
 debian
 ```
-выход командой
+выход такой командой
 ```
 exit
 ``` 
