@@ -141,7 +141,7 @@ fi
 EOF
 chmod +x /usr/local/bin/ndmc
 
-
+exit
 # Создаем файл со списком сервисов (пример)
 # cat > /opt/debian/debian/chroot-services.list << 'EOF'
 # Примеры сервисов (раскомментируйте нужные)
