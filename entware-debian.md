@@ -5,7 +5,7 @@ cd /opt/root
 wget http://ndm.zyxmon.org/binaries/debian/debian-trixie-13.3-aarch64.tar.gz
 # Создаем директорию и распаковываем Debian
 mkdir -p /opt/debian
-tar -xzf /opt/root/debian-trixie-13.0-aarch64.tar.gz -C /opt/debian
+tar -xzf /opt/root/debian-trixie-13.3-aarch64.tar.gz -C /opt/debian
 
 # Создаем скрипт для входа в chroot
 cat > /opt/bin/debian << 'EOF'
