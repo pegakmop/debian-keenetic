@@ -7,7 +7,7 @@ tar -xzf ~/debian-trixie-13.0-aarch64.tar.gz -C /opt/debian
 # Создаем скрипт для входа в chroot
 cat > /opt/bin/debian << 'EOF'
 #!/bin/sh
-chroot /opt/debian/debian /bin/bash -c "cd /root && exec /bin/bash"
+chroot /opt/debian/debian /bin/bash -l -c "cd /root && exec /bin/bash -l"
 EOF
 chmod +x /opt/bin/debian
 
@@ -103,6 +103,24 @@ exit 0
 EOF
 
 chmod +x /opt/etc/init.d/S99debian
+# настраиваем подмену ndmq
+cat > /usr/local/bin/ndmc << 'EOF'
+#!/bin/sh
+
+# /usr/local/bin/ndmc
+# chmod +x /usr/local/bin/ndmc
+
+if [ "$1" = "-c" ]; then
+    shift
+    ndmq -p "$*" -x | sed \
+        -e 's/<response>//' \
+        -e 's#</response>##' \
+        -e 's#<prompt>.*</prompt>##'
+else
+    ndmq -x
+fi
+EOF
+chmod +x /usr/local/bin/ndmc
 
 # Создаем файл со списком сервисов (пример)
 cat > /opt/debian/debian/chroot-services.list << 'EOF'
