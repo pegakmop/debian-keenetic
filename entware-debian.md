@@ -107,13 +107,28 @@ EOF
 
 chmod +x /opt/etc/init.d/S99debian
 /opt/etc/init.d/S99debian start
-# скачиваем, устанавливаем и настраиваем ndmq подмену ndmq как ndmc
+
+# Создаем файл со списком сервисов (пример)
+# cat > /opt/debian/debian/chroot-services.list << 'EOF'
+# Примеры сервисов (раскомментируйте нужные)
+# ssh
+# cron
+# nginx
+# EOF
+
+echo "Установка завершена!"
+echo "Для входа в Debian используйте: debian"
+echo "Для управления сервисом Debian: /opt/etc/init.d/S99debian {start|stop|restart|status}"
+```
+входим и обновляем ресурсы
+``` 
 debian
 apt update
-apt install -y wget
+apt install -y wget curl
 ```
 ставим по желанию ndmq и подмену на привычный ndmc
 ``` 
+debian
 cd /root
 wget https://raw.githubusercontent.com/The-BB/debian-keenetic/refs/heads/master/EOL/ndmq-aarch64_bullseye.tgz
 tar -xzf ndmq-aarch64_bullseye.tgz -C /
@@ -140,19 +155,7 @@ else
 fi
 EOF
 chmod +x /usr/local/bin/ndmc
-
-exit
-# Создаем файл со списком сервисов (пример)
-# cat > /opt/debian/debian/chroot-services.list << 'EOF'
-# Примеры сервисов (раскомментируйте нужные)
-# ssh
-# cron
-# nginx
-# EOF
-
-echo "Установка завершена!"
-echo "Для входа в Debian используйте: debian"
-echo "Для управления сервисом Debian: /opt/etc/init.d/S99debian {start|stop|restart|status}"
+ndmc -c show version
 ```
 запускаем дебиан и входим такой командой
 ```
