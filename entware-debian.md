@@ -103,7 +103,18 @@ exit 0
 EOF
 
 chmod +x /opt/etc/init.d/S99debian
-# настраиваем подмену ndmq
+/opt/etc/init.d/S99debian start
+# настраиваем ndmq подмену ndmq как ndmc
+apt install wget -y
+cd /root
+wget https://raw.githubusercontent.com/The-BB/debian-keenetic/refs/heads/master/EOL/ndmq-aarch64_bullseye.tgz
+tar -xzf ndmq-aarch64_bullseye.tgz -C /
+ls -l /usr/local/bin/ndmq
+ls -l /usr/local/lib/libndm.so
+ldconfig
+ldd /usr/local/bin/ndmq
+ndmq -v
+ndmq -help
 cat > /usr/local/bin/ndmc << 'EOF'
 #!/bin/sh
 
@@ -122,6 +133,7 @@ fi
 EOF
 chmod +x /usr/local/bin/ndmc
 
+
 # Создаем файл со списком сервисов (пример)
 cat > /opt/debian/debian/chroot-services.list << 'EOF'
 # Примеры сервисов (раскомментируйте нужные)
@@ -136,7 +148,7 @@ echo "Для управления сервисами: /opt/etc/init.d/S99debian 
 ```
 запускаем дебиан и входим
 ```
-/opt/etc/init.d/S99debian start && debian
+debian
 ```
 выход командой
 ```
